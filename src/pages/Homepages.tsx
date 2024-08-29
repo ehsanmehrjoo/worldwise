@@ -2,7 +2,7 @@
  function Homepages ()  {
   return (
     <div>
-        Homepages
+    WorldWise
     </div>
   );
 };
