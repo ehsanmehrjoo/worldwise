@@ -13,6 +13,9 @@ import styles from "./PageNav.module.css"
             <li>
             <NavLink to="/Product">Product</NavLink>
             </li>
+            <li>
+            <NavLink to="/Login">Login</NavLink>
+            </li>
         </ul>
     </nav>
   );
