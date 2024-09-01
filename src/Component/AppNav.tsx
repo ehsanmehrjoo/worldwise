@@ -1,8 +1,9 @@
-
+import style from "./AppNav.module.css"
  function AppNav ()  {
   return (
-    <div>
+    <div className={style.nav}>
       App Navigatin
+      <p>App</p>
     </div>
   );
 };
