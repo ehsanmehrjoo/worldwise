@@ -18,7 +18,8 @@ export default function Homepage() {
           of. Never forget your wonderful experiences, and show your friends how
           you have wandered the world.
         </h2>
-        <Link to="/App" className="cta">Start tracking now</Link>
+        <Link to="/App" className={styles.cta}>Start tracking now</Link>
+
       </section>
     </main>
   );

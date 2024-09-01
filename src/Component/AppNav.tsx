@@ -1,4 +1,4 @@
-import style from "./AppNav.module.css"
+import style from "./PageNav.module.css"
  function AppNav ()  {
   return (
     <div className={style.nav}>
