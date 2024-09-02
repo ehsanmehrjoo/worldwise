@@ -14,7 +14,7 @@ import Logo from "./Logo";
             <NavLink to="/Product">Product</NavLink>
             </li>
             <li>
-            <NavLink to="/Login">Login</NavLink>
+            <NavLink to="/Login" className={styles.ctaLink}>Login</NavLink>
             </li>
         </ul>
     </nav>
