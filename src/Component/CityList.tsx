@@ -1,8 +1,11 @@
 
+import styles from "./CityList.module.css"
+
  function Ctiylist ()  {
   return (
-    <div>
-    </div>
+    <ul className={styles.cityList}>
+        <li>List</li>
+    </ul>
   );
 };
 
