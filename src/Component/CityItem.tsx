@@ -1,9 +1,11 @@
-
- function ComponentName ()  {
+import styles from "./CityItem.module.css"
+ function CityItem ({city})  {
   return (
-    <div>
-    </div>
+    <ul className={styles.cityItem}>
+        city
+        {/* <a href=""></a> */}
+    </ul>
   );
 };
 
-export default ComponentName;
+export default CityItem;
