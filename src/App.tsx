@@ -14,8 +14,8 @@ function App() {
   const [cities, setCities] = useState([]); 
   const [isLoading, setIsLoading] = useState(false);
   
-  function handelDeleteBtn (){
-    setCities(cities.filter(city => city.id))
+  function handelDeleteBtn (cityId){
+    setCities(cities.filter(city => city.id !== cityId))
   }
   useEffect(() => {
     async function fetchCities() {
@@ -50,8 +50,8 @@ function App() {
         <Route path="/login" element={<Login />} />
 
         <Route path="/app" element={<AppLayout />}>
-          <Route index element={<CityList cities={cities} isLoading={isLoading} />} />
-          <Route path="cities" element={<CityList cities={cities} isLoading={isLoading} />} />
+          <Route index element={<CityList cities={cities} isLoading={isLoading} handelDeleteBtn={handelDeleteBtn}/>} />
+          <Route path="cities" element={<CityList cities={cities} isLoading={isLoading} handelDeleteBtn={handelDeleteBtn}/>} />
           <Route path="countries" element={<p>Countries</p>} />
           <Route path="form" element={<p>Form</p>} />
         </Route>
