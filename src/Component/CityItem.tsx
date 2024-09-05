@@ -7,7 +7,10 @@ const formatDate = (date) =>
     year: "numeric",
  
   }).format(new Date(date));
- function CityItem ({city})  {
+ function CityItem ({city , onDeleteBtn})  {
+  
+
+
   console.log(city);
   const {cityName, emoji, date} = city;
   return (
@@ -15,7 +18,7 @@ const formatDate = (date) =>
          <span className={styles.emoji}>{emoji}</span>
          <h3 className={styles.name}>{cityName}</h3>
          <time className={styles.date}>({formatDate(date)})</time>
-         <button className={styles.deleteBtn}>× </button>
+         <button className={styles.deleteBtn} onClick={() => onDeleteBtn(city.id)}>×</button>
     </li>
   );
 };
