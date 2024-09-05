@@ -14,7 +14,9 @@ function App() {
   const [cities, setCities] = useState([]); 
   const [isLoading, setIsLoading] = useState(false);
   
-
+  function handelDeleteBtn (){
+    setCities(cities.filter(city => city.id))
+  }
   useEffect(() => {
     async function fetchCities() {
       try {
