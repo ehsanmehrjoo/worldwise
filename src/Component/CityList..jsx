@@ -1,7 +1,7 @@
 import CityItem from "./CityItem";
 import styles from "./CityList.module.css";
-import Message from "./Message";
-import Spinner from "./Spinner";
+import Message from "./Message.";
+import Spinner from "./Spinner.";
 
 function CityList({ cities, isLoading, handelDeleteBtn }) {
   if (isLoading) return <Spinner />;

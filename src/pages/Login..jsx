@@ -1,4 +1,4 @@
-import PageNav from "../Component/PageNav";
+import PageNav from "../Component/PageNav.";
 import styles from "./Login.module.css";
 import {useState} from "react"
 
