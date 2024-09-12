@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { createContext, useContext, useEffect, useState } from 'react'
 
-const CitiesContext = useContext();
+const CitiesContext = createContext();
 
 const BASE_URL = "http://localhost:9000";
 
@@ -49,6 +49,7 @@ function CitiesProvider({children}) {
 }
  
 function useCities (){
-
+ const context = useContext(CitiesContext);
+ return context
 }
-export   { CitiesProvider ,  CitiesContext};
+export   { CitiesProvider ,  CitiesContext , useCities};
