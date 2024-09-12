@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+ import { CitiesProvider ,  CitiesContext } from "./contexts/CitiesContext"
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 import Product from "./pages/Product.";
@@ -18,6 +18,8 @@ function App() {
 
 
   return (
+    <CitiesProvider>
+
     <BrowserRouter>
       <Routes>
         <Route index element={<Homepage />} />
@@ -27,7 +29,10 @@ function App() {
 
         <Route path="/app" element={<AppLayout />}>
           <Route index element={<Navigate to="cities" replace/>} />
-          <Route path="cities" element={<CityList cities={cities} isLoading={isLoading} handelDeleteBtn={handelDeleteBtn}/>} />
+          <Route path="cities" element={<CityList
+          //  cities={cities} isLoading={isLoading} handelDeleteBtn={handelDeleteBtn}
+
+           />} />
           <Route path="cities/:id" element={<City />}/>
           <Route path="countries" element={<CountryList cities={cities} isLoading={isLoading}/>} />
           <Route path="form" element={<Form />} /> 
@@ -36,6 +41,7 @@ function App() {
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>
+    </CitiesProvider>
   );
 }
 

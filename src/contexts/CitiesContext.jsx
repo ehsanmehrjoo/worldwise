@@ -41,12 +41,14 @@ function CitiesProvider({children}) {
      <CitiesContext.Provider value={{
         cities , 
         isLoading , 
-        handelDeleteBtn : onDeleteBtn ,
+        onDeleteBtn : handelDeleteBtn ,
      }}>
  {children}
      </CitiesContext.Provider>
   )
 }
  
-
+function context (){
+    
+}
 export   { CitiesProvider ,  CitiesContext};
