@@ -48,7 +48,7 @@ function CitiesProvider({children}) {
   )
 }
  
-function context (){
-    
+function useCities (){
+
 }
 export   { CitiesProvider ,  CitiesContext};
