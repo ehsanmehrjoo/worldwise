@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react'
 
-const CitiesContext = useContext()
+const CitiesContext = useContext();
 
 const BASE_URL = "http://localhost:9000";
 
-function CitiesProvider( {children}) {
+function CitiesProvider({children}) {
     const [cities, setCities] = useState([]); 
     const [isLoading, setIsLoading] = useState(false);
 
@@ -38,8 +38,15 @@ function CitiesProvider( {children}) {
       setCities(cities.filter(city => city.id !== cityId))
     }
   return (
-     <CitiesContext.Porv
+     <CitiesContext.Provider value={{
+        cities , 
+        isLoading , 
+        handelDeleteBtn : onDeleteBtn ,
+     }}>
+ {children}
+     </CitiesContext.Provider>
   )
 }
+ 
 
-export default CitiesContext;
+export   { CitiesProvider ,  CitiesContext};
