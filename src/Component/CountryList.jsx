@@ -3,7 +3,7 @@ import styles from "./CountryList.module.css";
 import Message from "./Message.";
 import Spinner from "./Spinner.";
 
-function CountriesList({ cities, isLoading, }) {
+function CountriesList() {
   if (isLoading) return <Spinner />;
 
   if (!cities.length)
