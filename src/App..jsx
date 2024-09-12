@@ -1,4 +1,4 @@
- import { CitiesProvider ,  CitiesContext } from "./contexts/CitiesContext"
+ import { CitiesProvider  } from "./contexts/CitiesContext"
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 import Product from "./pages/Product.";
@@ -29,15 +29,9 @@ function App() {
 
         <Route path="/app" element={<AppLayout />}>
           <Route index element={<Navigate to="cities" replace/>} />
-          <Route path="cities" element={<CityList
-          //  cities={cities} isLoading={isLoading} handelDeleteBtn={handelDeleteBtn}
-
-           />} />
+          <Route path="cities" element={<CityList />} />
           <Route path="cities/:id" element={<City />}/>
-          <Route path="countries" element={<CountryList 
-          // cities={cities} isLoading={isLoading}
-
-          />} />
+          <Route path="countries" element={<CountryList />} />
           <Route path="form" element={<Form />} /> 
         </Route>
 
