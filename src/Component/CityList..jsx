@@ -5,7 +5,7 @@ import Message from "./Message.";
 import Spinner from "./Spinner.";
 
 function CityList() {
-  const { cities, isLoading, onDeleteBtn } = useCities
+  const { cities, isLoading, onDeleteBtn } = useCities();
   if (isLoading) return <Spinner />;
 
   if (!cities.length)
