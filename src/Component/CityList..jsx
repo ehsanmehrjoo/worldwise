@@ -1,10 +1,11 @@
+import { useCities } from "../contexts/CitiesContext";
 import CityItem from "./CityItem";
 import styles from "./CityList.module.css";
 import Message from "./Message.";
 import Spinner from "./Spinner.";
 
 function CityList() {
-  
+  const { cities, isLoading, onDeleteBtn } = useCities
   if (isLoading) return <Spinner />;
 
   if (!cities.length)
@@ -18,7 +19,7 @@ function CityList() {
         <CityItem
           city={city}
           key={city.id}
-          onDeleteBtn={() => handelDeleteBtn(city.id)}
+          onDeleteBtn={() => onDeleteBtn(city.id)}
         />
       ))}
     </ul>
