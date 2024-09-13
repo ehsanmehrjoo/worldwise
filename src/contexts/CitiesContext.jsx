@@ -34,6 +34,28 @@ function CitiesProvider({children}) {
     fetchCities();
   }, []);
     
+  function getCity(id){
+    async function fetchCities() {
+      try {
+        setIsLoading(true);
+        const res = await fetch(`${BASE_URL}/cities/id`);
+        
+        console.log(res); // Add this line to inspect the response
+  
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+  
+        const data = await res.json();
+        setCurrentCity(data);
+      } catch (error) {
+        console.error("Error fetching cities:", error); // Log the error details
+        alert("There was an error loading data...");
+      } finally {
+        setIsLoading(false);
+      }
+    }
+  }
   
     function handelDeleteBtn (cityId){
       setCities(cities.filter(city => city.id !== cityId))
