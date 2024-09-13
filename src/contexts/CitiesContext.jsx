@@ -45,6 +45,7 @@ function CitiesProvider({children}) {
         }
   
         const data = await res.json();
+        console.log(data);
         setCurrentCity(data);
       } catch (error) {
         console.error("Error fetching cities:", error); // Log the error details
