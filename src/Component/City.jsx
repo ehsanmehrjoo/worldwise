@@ -1,5 +1,6 @@
 import { useParams, useSearchParams } from "react-router-dom";
 import styles from "./City.module.css";
+import { useCities } from "../contexts/CitiesContext";
 
 const formatDate = (date) =>
   new Intl.DateTimeFormat("en", {
@@ -10,10 +11,11 @@ const formatDate = (date) =>
   }).format(new Date(date));
 
 function City() {
-  const [searchParam , setSearchParam ] = useSearchParams();
-  const lat = searchParam.get("lat");
-  const lng = searchParam.get("lng")
+  // const [searchParam , setSearchParam ] = useSearchParams();
+  // const lat = searchParam.get("lat");
+  // const lng = searchParam.get("lng")
 
+  // const {currentCity , setCurrentCity} = useCities()
  const {id} = useParams()
  
   // TEMP DATA
