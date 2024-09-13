@@ -34,14 +34,12 @@ function CitiesProvider({children}) {
     fetchCities();
   }, []);
     
-  function getCity(id){
-    async function fetchCities() {
+  async function getCity (id){
+   
       try {
         setIsLoading(true);
-        const res = await fetch(`${BASE_URL}/cities/id`);
-        
-        console.log(res); // Add this line to inspect the response
-  
+        const res = await fetch(`${BASE_URL}/cities/${id}`);
+          
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);
         }
@@ -54,7 +52,7 @@ function CitiesProvider({children}) {
       } finally {
         setIsLoading(false);
       }
-    }
+  
   }
   
     function handelDeleteBtn (cityId){
@@ -66,7 +64,8 @@ function CitiesProvider({children}) {
         isLoading , 
         onDeleteBtn : handelDeleteBtn ,
         currentCity ,
-        setCurrentCity
+        setCurrentCity, 
+        getCity
      }}>
  {children}
      </CitiesContext.Provider>
