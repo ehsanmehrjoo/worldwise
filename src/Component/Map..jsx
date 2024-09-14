@@ -1,11 +1,10 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
 import styles from "./Map.module.css";
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import { MapContainer, Marker, Popup, TileLayer, useMap,  useMapEvents } from "react-leaflet";
 import { useState, useEffect } from "react";
 import { useCities } from "../contexts/CitiesContext";
 
 function Map() {
-  const navigate = useNavigate();
   const {cities} = useCities()
   const [mapPosition, setMapPosition] = useState([51.505, -0.09]);
 
@@ -14,15 +13,16 @@ function Map() {
   const lat = searchParam.get("lat");
   const lng = searchParam.get("lng");
 
-  useEffect(() => {
-    if (lat && lng) {
-      setMapPosition([parseFloat(lat), parseFloat(lng)]);
-    }
-  }, [lat, lng]);
+ useEffect(function(){
+  if(lat && lng) setMapPosition([lat, lng])
+ }, [lat,lng])
 
   return (
-    <div className={styles.mapContainer} onClick={() => navigate("form")}>
-      <MapContainer center={mapPosition} zoom={13} scrollWheelZoom={true} className={styles.map}>
+    <div className={styles.mapContainer}  >
+      <MapContainer 
+            center={mapPosition} 
+      // center={[lat, lng]} 
+      zoom={13} scrollWheelZoom={true} className={styles.map}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
@@ -32,9 +32,26 @@ function Map() {
           <span>{city.emoji}</span><span>{city.cityName}</span>   
           </Popup>
         </Marker>)}
+        <ChangeCenter position={mapPosition}/>
+        <DetectClick />
       </MapContainer>
     </div>
   );
 }
+function ChangeCenter({position}){
+  const map = useMap();
+  map.setView(position)
+  return null
+}
 
+
+function DetectClick(){
+  const navigate = useNavigate();
+
+  useMapEvents({
+    click : e =>{
+      console.log(e);
+      navigate(`form?lat=${e.latlng.lat}&lng=${e.latlng.lng}`)}
+  })
+}
 export default Map;
