@@ -10,16 +10,16 @@ const formatDate = (date) =>
  
   }).format(new Date(date));
  function CityItem ({city})  {
-  const {currentCity  , setCities , cities } = useCities()
+  const {currentCity  ,   deletCity} = useCities()
+  const {cityName, emoji, date ,id , position } = city ;
 
-  function handelDeleteBtn (e , cityId){
+  function handelDeleteBtn (e){
     e.preventDefault() 
     console.log("test");
-     
+    deletCity(id)
  
   }
  
-  const {cityName, emoji, date ,id , position } = city ;
 
   return (
     <li>
