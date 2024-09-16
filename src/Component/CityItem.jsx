@@ -12,7 +12,8 @@ const formatDate = (date) =>
  function CityItem ({city})  {
   const {currentCity  , setCities , cities } = useCities()
 
-  function handelDeleteBtn (cityId){
+  function handelDeleteBtn (e , cityId){
+    e.preventDefault() 
     setCities(cities.filter(city => city.id !== cityId))
  
   }
