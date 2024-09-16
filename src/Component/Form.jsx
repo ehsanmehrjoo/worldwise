@@ -31,7 +31,9 @@ function Form() {
   const [emoji, setEmoji] = useState("");
   const [geocodingError, setGeocodingError] = useState("");
 
-  function handleAddCity() {
+  function handleAddCity(e) {
+    e.preventDefault()
+    if()
     const newCity = {
       cityName,
       country,
@@ -48,6 +50,7 @@ function Form() {
 
 
   useEffect(function () {
+    if(!lat && !lng) return 
     async function fetchReverseGeocode() {
       try {
         setIsLoadingGeocoding(true);
@@ -71,16 +74,18 @@ function Form() {
       }
     }
 
-    if (lat && lng) {
+    
       fetchReverseGeocode();
-    }
+    
   }, [lat, lng]);
 
   if (isLoadingGeocoding) return <Spinner />;
+
+  if(!lat && !lng ) return <Message message="Start by clicking somewhere on the map"/>
   if (geocodingError) return <Message message={geocodingError} />;
 
   return (
-    <form className={styles.form}>
+    <form className={styles.form} onSubmit={handleAddCity}>
       <div className={styles.row}>
         <label htmlFor="cityName">City name</label>
         <input
@@ -111,7 +116,7 @@ function Form() {
       </div>
 
       <div className={styles.buttons}>
-        <Button type="primary" onClick={handleAddCity}>ADD</Button> {/* Added the click handler */}
+        <Button type="primary"  >ADD</Button> {/* Added the click handler */}
         <BackButton />
       </div>
     </form>
