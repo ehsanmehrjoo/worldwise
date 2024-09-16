@@ -55,6 +55,34 @@ function CitiesProvider({children}) {
       }
   
   }
+
+  async function CreacteCity (newCity){
+   
+    try {
+      setIsLoading(true);
+      const res = await fetch(`${BASE_URL}/cities}` , {
+        method : "POST",
+        body : JSON.stringify(newCity),
+        headers : {
+          "Content-Type" : "application/json"
+        }
+      });
+        
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+
+      const data = await res.json();
+      console.log(data);
+      setCurrentCity(data);
+    } catch (error) {
+      console.error("Error fetching cities:", error); // Log the error details
+      alert("There was an error loading data...");
+    } finally {
+      setIsLoading(false);
+    }
+
+}
   
     
   return (
@@ -64,7 +92,8 @@ function CitiesProvider({children}) {
         isLoading , 
         currentCity ,
         setCurrentCity, 
-        getCity
+        getCity, 
+        CreacteCity
      }}>
  {children}
      </CitiesContext.Provider>
