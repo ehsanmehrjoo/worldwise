@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"; // Use useNavigate instead of Navigate
-import { useId } from "react";
+// import { useId } from "react";
 import styles from "./Form.module.css";
 import BackButton from "./BackButton";
 import { useURLPosition } from "../hooks/useURLPosition";
@@ -21,8 +21,8 @@ const BASE_URL = "https://api.bigdatacloud.net/data/reverse-geocode-client";
 
 function Form() {
   const navigate = useNavigate(); // Correct usage of navigate
-  const id = useId();
-  const { cities, setCities } = useCities();
+  // const id = useId();
+  const {  creacteCity,  setCities } = useCities();
   const [lat, lng] = useURLPosition();
   const [isLoadingGeocoding, setIsLoadingGeocoding] = useState(false);
   const [cityName, setCityName] = useState("");
@@ -43,8 +43,7 @@ function Form() {
       notes,
       position: { lat, lng },
     };
-    console.log(newCity);
-    setCities((prevCities) => [...prevCities, newCity]);
+    creacteCity(newCity)
     navigate("/App/cities"); // Navigate to cities route after adding
   }
 
