@@ -56,14 +56,12 @@ function CitiesProvider({children}) {
   
   }
   
-    function handelDeleteBtn (cityId){
-      setCities(cities.filter(city => city.id !== cityId))
-    }
+    
   return (
      <CitiesContext.Provider value={{
         cities , 
+        setCities , 
         isLoading , 
-        onDeleteBtn : handelDeleteBtn ,
         currentCity ,
         setCurrentCity, 
         getCity

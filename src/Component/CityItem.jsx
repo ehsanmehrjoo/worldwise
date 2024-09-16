@@ -9,12 +9,15 @@ const formatDate = (date) =>
     year: "numeric",
  
   }).format(new Date(date));
- function CityItem ({city , onDeleteBtn})  {
-  const {currentCity} = useCities()
+ function CityItem ({city})  {
+  const {currentCity  , setCities , cities } = useCities()
 
-
-  // console.log(city);
-  const {cityName, emoji, date ,id ,position} = city;
+  function handelDeleteBtn (cityId){
+    setCities(cities.filter(city => city.id !== cityId))
+ 
+  }
+ 
+  const {cityName, emoji, date ,id , position } = city ;
 
   return (
     <li>
@@ -23,7 +26,7 @@ const formatDate = (date) =>
          <span className={styles.emoji}>{emoji}</span>
          <h3 className={styles.name}>{cityName}</h3>
          <time className={styles.date}>({formatDate(date)})</time>
-         <button className={styles.deleteBtn} onClick={() => onDeleteBtn(city.id)}>×</button>
+         <button className={styles.deleteBtn} onClick={() => handelDeleteBtn(city.id)}>×</button>
     </Link>
     </li>
   );

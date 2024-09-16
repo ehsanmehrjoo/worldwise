@@ -1,12 +1,13 @@
-// "https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=0&longitude=0"
-
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom"; // Use useNavigate instead of Navigate
 
 import styles from "./Form.module.css";
-import Button from "./Button";
-import { useNavigate } from "react-router-dom";
 import BackButton from "./BackButton";
 import { useURLPosition } from "../hooks/useURLPosition";
+import Message from "./Message.";
+import Spinner from "./Spinner.";
+import Button from "./Button";
+import { useCities } from "../contexts/CitiesContext";
 
 export function convertToEmoji(countryCode) {
   const codePoints = countryCode
@@ -16,31 +17,68 @@ export function convertToEmoji(countryCode) {
   return String.fromCodePoint(...codePoints);
 }
 
-
+const BASE_URL = "https://api.bigdatacloud.net/data/reverse-geocode-client";
 
 function Form() {
-  const [lat , lng] = useURLPosition();
+  const navigate = useNavigate(); // Correct usage of navigate
+  const { cities, setCities } = useCities();
+  const [lat, lng] = useURLPosition();
+  const [isLoadingGeocoding, setIsLoadingGeocoding] = useState(false);
   const [cityName, setCityName] = useState("");
   const [country, setCountry] = useState("");
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(new Date().toISOString().split("T")[0]); // Format Date correctly
   const [notes, setNotes] = useState("");
- const [isLoadingGecoding, setIsLoadingGecoding] = useState(false);
-  useEffect(function(){
-   async function fetchReverseGeocode () {
-    try{
-      setIsLoadingGecoding(true)
-      const res = await fetch(` `)
-    const data = await res.json();
-    console.log(data);
-    setCityName(data)
-   
-    } catch (err){
-      console.log("error")
-    }finally{
-      setIsLoadingGecoding(false)
+  const [emoji, setEmoji] = useState("");
+  const [geocodingError, setGeocodingError] = useState("");
+
+  function handleAddCity() {
+    const newCity = {
+      cityName,
+      country,
+      emoji,
+      date,
+      notes,
+      position: { lat, lng },
+    };
+
+    setCities((prevCities) => [...prevCities, newCity]);
+    navigate("/App/cities"); // Navigate to cities route after adding
+  }
+
+
+
+  useEffect(function () {
+    async function fetchReverseGeocode() {
+      try {
+        setIsLoadingGeocoding(true);
+        setGeocodingError("");
+        const res = await fetch(`${BASE_URL}?latitude=${lat}&longitude=${lng}`);
+        const data = await res.json();
+        console.log(data);
+
+        if (!data.countryCode)
+          throw new Error(
+            "That doesn't seem to be a city. Click somewhere else 😉"
+          );
+        setCityName(data.city || data.locality || "Unknown");
+        setCountry(data.countryCode || "");
+        setEmoji(convertToEmoji(data.countryCode));
+      } catch (err) {
+        setGeocodingError(err.message);
+        console.log("Error fetching geocode data:", err);
+      } finally {
+        setIsLoadingGeocoding(false);
+      }
     }
-    fetchReverseGeocode()
-  }}, [lat ,lng])
+
+    if (lat && lng) {
+      fetchReverseGeocode();
+    }
+  }, [lat, lng]);
+
+  if (isLoadingGeocoding) return <Spinner />;
+  if (geocodingError) return <Message message={geocodingError} />;
+
   return (
     <form className={styles.form}>
       <div className={styles.row}>
@@ -50,13 +88,14 @@ function Form() {
           onChange={(e) => setCityName(e.target.value)}
           value={cityName}
         />
-        {/* <span className={styles.flag}>{emoji}</span> */}
+        <span className={styles.flag}>{emoji}</span>
       </div>
 
       <div className={styles.row}>
         <label htmlFor="date">When did you go to {cityName}?</label>
         <input
           id="date"
+          type="date" // Type set to 'date'
           onChange={(e) => setDate(e.target.value)}
           value={date}
         />
@@ -72,7 +111,8 @@ function Form() {
       </div>
 
       <div className={styles.buttons}>
-       <BackButton />
+        <Button type="primary" onClick={handleAddCity}>ADD</Button> {/* Added the click handler */}
+        <BackButton />
       </div>
     </form>
   );
