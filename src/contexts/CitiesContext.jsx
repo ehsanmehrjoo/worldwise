@@ -60,7 +60,7 @@ function CitiesProvider({children}) {
    
     try {
       const res = await fetch(`${BASE_URL}/cities`, {
-        method: "POST",
+        method: "Post",
         body: JSON.stringify(newCity),
         headers: {
           "Content-Type": "application/json",

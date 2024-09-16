@@ -14,7 +14,8 @@ const formatDate = (date) =>
 
   function handelDeleteBtn (e , cityId){
     e.preventDefault() 
-    setCities(cities.filter(city => city.id !== cityId))
+    console.log("test");
+     
  
   }
  
@@ -27,7 +28,7 @@ const formatDate = (date) =>
          <span className={styles.emoji}>{emoji}</span>
          <h3 className={styles.name}>{cityName}</h3>
          <time className={styles.date}>({formatDate(date)})</time>
-         <button className={styles.deleteBtn} onClick={() => handelDeleteBtn(city.id)}>×</button>
+         <button className={styles.deleteBtn} onClick={ handelDeleteBtn}>×</button>
     </Link>
     </li>
   );
