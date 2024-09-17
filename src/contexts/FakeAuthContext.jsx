@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { createContext } from 'react'
 
-function FakeAuthContext() {
+const AuthContext = createContext()
+
+function  AuthProvider ({children}) {
   return (
-    <div>FakeAuthContext</div>
+    <AuthContext.Provider>
+        {children}
+    </AuthContext.Provider>
   )
 }
 
-export default FakeAuthContext
+export   {AuthProvider}
