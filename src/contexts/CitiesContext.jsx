@@ -19,6 +19,7 @@ function reducer(state , action){
         return {...state ,isLoading : false , currentCity : action.payload}
 
     case "cities/creacte" :
+      
 
 
     case "cities/deleted" :
@@ -55,7 +56,7 @@ function CitiesProvider({children}) {
   
       } catch (error) {
         console.error("Error fetching cities:", error); // Log the error details
-        dispatch({type : "rejected" , payload : "There was an error loading data..."});
+        dispatch({type : "rejected" , payload : "There was an error loading cities..."});
       }  
     }
     fetchCities();
@@ -77,7 +78,7 @@ function CitiesProvider({children}) {
         dispatch({type : "city/loaded" , payload : data})
       } catch (error) {
         console.error("Error fetching cities:", error); // Log the error details
-        dispatch({type : "rejected" ,  payload :"There was an error loading data..."});
+        dispatch({type : "rejected" ,  payload :"There was an error loading the city..."});
       }  
   
   }
@@ -97,10 +98,8 @@ function CitiesProvider({children}) {
    
     } catch (error) {
       
-      alert("There was an error creacting error");
-    } finally {
-      setIsLoading(false);
-    }
+      dispatch({type : "rejected" , payload : "There was an error creacting error"});
+    } 
 
 }
 
@@ -116,10 +115,8 @@ async function  deletCity (id){
  
   } catch (error) {
     
-    alert("There was an error deleting city.");
-  } finally {
-    setIsLoading(false);
-  }
+    dispatch({type : "rejected", payload : "There was an error deleting city."});
+  } 
 
 }
   
