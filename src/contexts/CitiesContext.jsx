@@ -15,6 +15,9 @@ function reducer(state , action){
     case "cities/loaded" :
       return {...state , isLoading : false ,  cities : action.payload }
 
+      case "city/loaded" :
+        return {...state ,isLoading : false , currentCity : action.payload}
+
     case "cities/creacte" :
 
 
@@ -70,13 +73,12 @@ function CitiesProvider({children}) {
   
         const data = await res.json();
         console.log(data);
+        dispatch({type : "city/loaded" , payload : data})
         setCurrentCity(data);
       } catch (error) {
         console.error("Error fetching cities:", error); // Log the error details
-        alert("There was an error loading data...");
-      } finally {
-        setIsLoading(false);
-      }
+        dispatch({type : "rejected" ,  payload :"There was an error loading data..."});
+      }  
   
   }
 
