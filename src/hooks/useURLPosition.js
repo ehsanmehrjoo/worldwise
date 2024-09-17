@@ -6,5 +6,3 @@ import { useSearchParams } from 'react-router-dom';
     const lng = searchParam.get("lng");
   return [lat, lng];
 }
-
- 
