@@ -38,10 +38,10 @@ function CitiesProvider({children}) {
 
     
   useEffect(() => {
-    async function fetchCities() {
-      try {
+    async function fetchCities() { 
         dispatch({type : "loading"})
-   
+
+      try {
         const res = await fetch(`${BASE_URL}/cities`);
         
         console.log(res); // Add this line to inspect the response
@@ -62,9 +62,10 @@ function CitiesProvider({children}) {
   }, []);
     
   async function getCity (id){
-   
+      dispatch({type : "loading"})
+
       try {
-        setIsLoading(true);
+        
         const res = await fetch(`${BASE_URL}/cities/${id}`);
           
         if (!res.ok) {
@@ -74,7 +75,6 @@ function CitiesProvider({children}) {
         const data = await res.json();
         console.log(data);
         dispatch({type : "city/loaded" , payload : data})
-        setCurrentCity(data);
       } catch (error) {
         console.error("Error fetching cities:", error); // Log the error details
         dispatch({type : "rejected" ,  payload :"There was an error loading data..."});
