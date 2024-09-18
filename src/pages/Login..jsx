@@ -2,24 +2,28 @@ import {   useNavigate } from "react-router-dom";
 import PageNav from "../Component/PageNav.";
 import { useAuth } from "../contexts/FakeAuthContext";
 import styles from "./Login.module.css";
-import {useState} from "react"
- 
+import {useEffect, useState} from "react"
+import Button from "../Component/Button";
+import button from '/src/Component/Button.module.css';
 
 
 export default function Login() {
-const {login }  = useAuth()
+const {login , isAuthenticated , error}  = useAuth()
 const navigate = useNavigate();
   // PRE-FILL FOR DEV PURPOSES
   const [email, setEmail] = useState("jack@example.com");
   const [password, setPassword] = useState("qwerty");
 
-  async function handleLogin(e) {
-    e.preventDefault(); // Prevents form submission and page reload
-    const result = await login(email, password); // Pass email and password
-    if (result) {
-      navigate(`/App/cities`);
-    }
+  useEffect(function(){
+    if(isAuthenticated === true)
+      navigate(`/App`, {replace : true});
+  },[isAuthenticated, navigate])
+
+  function handleSubmit (e){
+    e.preventDefault();
+   if(email && password) login(email , password)
   }
+ 
 
   return (
     <main className={styles.login}>
@@ -44,12 +48,14 @@ const navigate = useNavigate();
             value={password}
           />
         </div>
-
-        <div>
-        {/* <button className="cta">Registration</button> */}
-          <button   onClick={handleLogin}>Login</button>
-        </div>
+       
+        <div className={button[`btn-div`]}>
+  <Button type="primary" onClick={handleSubmit}>Login</Button>
+  <Button type="primary">Registration</Button>
+</div>
       </form>
+      {error && <h1 className={styles['error-message']}>{error}</h1>}
+
     </main>
   );
 }

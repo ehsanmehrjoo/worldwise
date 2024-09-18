@@ -33,3 +33,13 @@
   color: var(--color-dark--1);
   box-shadow: 0 0.4rem 1.2rem rgba(36, 42, 46, 0.16);
 }
+.btn-div {
+  display: flex;
+  justify-content: space-between;
+  width: 100%; /* Ensure the container takes the full width */
+  padding: 0 10px; /* Optional padding for better spacing */
+}
+
+.btn-div button {
+  width: auto; /* Ensure buttons take only the space they need */
+}

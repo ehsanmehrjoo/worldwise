@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"; // Use useNavigate instead of Na
 import styles from "./Form.module.css";
 import BackButton from "./BackButton";
 import { useURLPosition } from "../hooks/useURLPosition";
-import Message from "./Message.";
+import Message from "./Message";
 import Spinner from "./Spinner.";
 import Button from "./Button";
 import { useCities } from "../contexts/CitiesContext";

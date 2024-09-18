@@ -2,10 +2,6 @@ import React, { createContext, useContext, useReducer } from "react";
 
 const AuthContext = createContext();
 
-const initialState = {
-  user: null,
-  isAuthenticated: false,
-};
 
 const FAKE_USER = {
   name: "Jack",
@@ -14,6 +10,11 @@ const FAKE_USER = {
   avatar: "https://i.pravatar.cc/100?u=zz",
 };
 
+const initialState = {
+  user: null,
+  isAuthenticated: false,
+  error : ""
+};
 function reducer(state, action) {
   switch (action.type) {
     case "login":
@@ -22,21 +23,23 @@ function reducer(state, action) {
     case "logout":
       return { ...state, user: null, isAuthenticated: false };
 
+      case "error" :
+        return {...state , error : action.payload, isAuthenticated: false };
     default:
       throw new Error("Unknown action type");
   }
 }
 
 function AuthProvider({ children }) {
-  const [{ user, isAuthenticated }, dispatch] = useReducer(reducer, initialState);
+  const [{ user, isAuthenticated , error }, dispatch] = useReducer(reducer, initialState);
 
   function login(email, password) {
     if (email === FAKE_USER.email && password === FAKE_USER.password) {
       dispatch({ type: "login", payload: FAKE_USER });
-      return true;  // Return true if login is successful
+
     } else {
-      alert("Login failed");
-      return false;  // Return false if login fails
+      dispatch({type : "error" ,  payload :"Login failed 🤔"});
+    
     }
   }
   
@@ -47,7 +50,7 @@ function AuthProvider({ children }) {
   }
 
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated, login, logout }}>
+    <AuthContext.Provider value={{ user, isAuthenticated, login, logout, error }}>
       {children}
     </AuthContext.Provider>
   );

@@ -96,7 +96,7 @@ function CitiesProvider({ children }) {
   async function createCity(newCity) {
     try {
       const res = await fetch(`${BASE_URL}/cities`, {
-        method: "POST", // Use uppercase "POST"
+        method: "POST",  
         body: JSON.stringify(newCity),
         headers: {
           "Content-Type": "application/json",
@@ -128,8 +128,8 @@ function CitiesProvider({ children }) {
         isLoading,
         currentCity,
         getCity,
-        createCity, // Corrected function name
-        deleteCity, // Corrected function name
+        createCity,  
+        deleteCity, 
       }}
     >
       {children}
