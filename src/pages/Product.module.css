@@ -32,3 +32,42 @@
 .product section a {
   margin-top: 2rem;
 }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .product section {
+    grid-template-columns: 1fr; /* Switch to a single column on tablets */
+    gap: 4rem; /* Reduce gap */
+  }
+
+  .product h2 {
+    font-size: 3rem; /* Smaller font for tablet */
+  }
+
+  .product p {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .product {
+    padding: 1.5rem; /* Reduce padding on mobile */
+  }
+
+  .product section {
+    width: 95%; /* Increase the width for mobile screens */
+    margin: 3rem auto;
+  }
+
+  .product h2 {
+    font-size: 2.5rem; /* Smaller font for mobile */
+  }
+
+  .product p {
+    font-size: 1.2rem;
+  }
+
+  .product img {
+    margin-bottom: 2rem; /* Add spacing between image and text on mobile */
+  }
+}
