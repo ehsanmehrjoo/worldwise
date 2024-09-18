@@ -12,6 +12,7 @@ import City from "./Component/City";
 import Form from "./Component/Form";
 import CountryList from "./Component/CountryList";
 import { AuthProvider } from "./contexts/FakeAuthContext";
+import ProtectedRoute from "./pages/ProtectedRoute";
  
 
 
@@ -31,7 +32,10 @@ function App() {
         
         <Route path="/login" element={<Login />} />
 
-        <Route path="/app" element={<AppLayout />}>
+        <Route path="/app" element={
+          <ProtectedRoute>
+          <AppLayout />
+        </ProtectedRoute> }>
           <Route index element={<Navigate to="cities" replace/>} />
           <Route path="cities" element={<CityList />} />
           <Route path="cities/:id" element={<City />}/>

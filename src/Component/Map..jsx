@@ -1,4 +1,4 @@
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from "./Map.module.css";
 import { MapContainer, Marker, Popup, TileLayer, useMap,  useMapEvents } from "react-leaflet";
 import { useState, useEffect } from "react";
@@ -6,6 +6,7 @@ import { useCities } from "../contexts/CitiesContext";
 import { useGeolocation } from "../hooks/UseGeolocation";
 import Button from "./Button"
 import { useURLPosition } from "../hooks/useURLPosition";
+
 
 function Map() {
   const {cities} = useCities()

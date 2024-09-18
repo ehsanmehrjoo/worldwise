@@ -37,15 +37,27 @@
       }
     },
     {
-      "id": "5a7f",
-      "cityName": "London",
-      "country": "GB",
-      "emoji": "🇬🇧",
-      "date": "2024-09-17",
+      "id": "b3de",
+      "cityName": "Grunberg",
+      "country": "DE",
+      "emoji": "🇩🇪",
+      "date": "2024-09-18",
       "notes": "",
       "position": {
-        "lat": "51.49429970511592",
-        "lng": "-0.396881103515625"
+        "lat": "50.59760944777169",
+        "lng": "9.030761718750002"
+      }
+    },
+    {
+      "id": "1cd4",
+      "cityName": " ProtectedRoute",
+      "country": "GB",
+      "emoji": "🇬🇧",
+      "date": "2024-09-18",
+      "notes": "",
+      "position": {
+        "lat": "51.53502040470376",
+        "lng": "-0.06694793701171876"
       }
     }
   ]
