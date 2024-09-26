@@ -4,7 +4,7 @@ import styles from "./Form.module.css";
 import BackButton from "./BackButton";
 import { useURLPosition } from "../hooks/useURLPosition";
 import Message from "./Message";
-import Spinner from "./Spinner.";
+import Spinner from "./Spinner";
 import Button from "./Button";
 import { useCities } from "../contexts/CitiesContext";
 

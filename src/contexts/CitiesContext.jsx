@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useReducer } from 'react';
+import React, { createContext, useCallback, useContext, useEffect, useReducer } from 'react';
 
 const BASE_URL = "http://localhost:8000";
 
@@ -71,6 +71,7 @@ function CitiesProvider({ children }) {
     fetchCities();
   }, []);
 
+ const getCity = useCallback(() => {
   async function getCity(id) {
    
     if(Number(id) === currentCity.id ) return
@@ -92,6 +93,7 @@ function CitiesProvider({ children }) {
       dispatch({ type: "rejected", payload: "There was an error loading the city..." });
     }
   }
+ }, [currentCity.id]);  
 
   async function createCity(newCity) {
     try {
