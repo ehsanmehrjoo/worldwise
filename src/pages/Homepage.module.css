@@ -33,22 +33,23 @@
   margin-bottom: 2.5rem;
 }
 
-/* Media Query برای صفحه‌نمایش‌های کوچکتر از 1200 پیکسل */
-@media only screen and (max-width: 1200px) {
+/* Media Query برای آیفون 12 پرو */
+@media only screen and (max-width: 390px) { /* عرض 390 پیکسل */
   .homepage {
-    padding: 2rem 4rem;
+    padding: 1.5rem 2rem;
+    margin: 1.5rem;
   }
 
   .homepage h1 {
-    font-size: 4rem;
+    font-size: 3.5rem; /* کمی کوچک‌تر برای جا شدن */
   }
 
   .homepage h2 {
-    font-size: 1.7rem;
+    font-size: 1.5rem; /* کمی کوچک‌تر */
   }
 }
 
-/* Media Query برای صفحه‌نمایش‌های کوچکتر از 768 پیکسل (تبلت) */
+/* Media Query برای صفحه‌نمایش‌های بزرگ‌تر */
 @media only screen and (max-width: 768px) {
   .homepage {
     padding: 1.5rem 2rem;
@@ -61,21 +62,5 @@
 
   .homepage h2 {
     font-size: 1.5rem;
-  }
-}
-
-/* Media Query برای صفحه‌نمایش‌های کوچکتر از 480 پیکسل (موبایل) */
-@media only screen and (max-width: 480px) {
-  .homepage {
-    padding: 1rem 1.5rem;
-    margin: 1rem;
-  }
-
-  .homepage h1 {
-    font-size: 2.5rem;
-  }
-
-  .homepage h2 {
-    font-size: 1.2rem;
   }
 }
