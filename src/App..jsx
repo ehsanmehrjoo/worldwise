@@ -1,4 +1,4 @@
-import { lazy, useEffect } from "react";
+import { lazy, Suspense, useEffect } from "react";
 
 import { BrowserRouter, Navigate, Route, Routes, useLocation } from "react-router-dom";
 
@@ -10,6 +10,7 @@ import CityList from "./Component/CityList."; // Corrected name
 import City from "./Component/City"; 
 import Form from "./Component/Form";
 import CountryList from "./Component/CountryList";
+import SpinnerFullPage from "./Component/SpinnerFullPage.";
 
 // import Product from "./pages/Product.";
 // import Pricing from "./pages/Pricing.";
@@ -75,7 +76,9 @@ function App() {
     <CitiesProvider>
       <AuthProvider>
         <BrowserRouter>
+        <Suspense fallback={<SpinnerFullPage />} >
           <AppContent />
+          </Suspense>
         </BrowserRouter>
       </AuthProvider>
     </CitiesProvider>
