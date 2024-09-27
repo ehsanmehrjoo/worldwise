@@ -32,3 +32,50 @@
   color: var(--color-light--1);
   margin-bottom: 2.5rem;
 }
+
+/* Media Query برای صفحه‌نمایش‌های کوچکتر از 1200 پیکسل */
+@media only screen and (max-width: 1200px) {
+  .homepage {
+    padding: 2rem 4rem;
+  }
+
+  .homepage h1 {
+    font-size: 4rem;
+  }
+
+  .homepage h2 {
+    font-size: 1.7rem;
+  }
+}
+
+/* Media Query برای صفحه‌نمایش‌های کوچکتر از 768 پیکسل (تبلت) */
+@media only screen and (max-width: 768px) {
+  .homepage {
+    padding: 1.5rem 2rem;
+    margin: 1.5rem;
+  }
+
+  .homepage h1 {
+    font-size: 3rem;
+  }
+
+  .homepage h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Media Query برای صفحه‌نمایش‌های کوچکتر از 480 پیکسل (موبایل) */
+@media only screen and (max-width: 480px) {
+  .homepage {
+    padding: 1rem 1.5rem;
+    margin: 1rem;
+  }
+
+  .homepage h1 {
+    font-size: 2.5rem;
+  }
+
+  .homepage h2 {
+    font-size: 1.2rem;
+  }
+}
