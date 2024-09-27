@@ -10,7 +10,7 @@ import CityList from "./Component/CityList."; // Corrected name
 import City from "./Component/City"; 
 import Form from "./Component/Form";
 import CountryList from "./Component/CountryList";
-import SpinnerFullPage from "./Component/SpinnerFullPage.";
+import SpinnerFullPage from "./Component/SpinnerFullPage";
 
 // import Product from "./pages/Product.";
 // import Pricing from "./pages/Pricing.";
